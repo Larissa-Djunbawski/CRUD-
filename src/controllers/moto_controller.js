@@ -1,28 +1,53 @@
 const Moto = require("../models/moto_model.js")
 
 const store = (req,res) => {
-    Moto.create(req.body)
-    res.json()
+    try {
+        Moto.create(req.body)
+        res.json()
+    } catch (err) {
+        res.status(400).json(err)
+    }
+
 }
 
 const index = (req,res) => {
-    const content = Moto.find().exec()
-    res.json(content)
+    try {
+        const content = Moto.find().exec()
+        res.json(content)
+    } catch (err) {
+        res.status(400).json(err)
+    }
+
 }
 
 const show = (req,res) => {
-    const content = Moto.findById(req.params.id).exec()
-    res.json(content)
+    try {
+        const content = Moto.findById(req.params.id).exec()
+        res.json(content)
+    } catch (err) {
+        res.status(400).json(err)
+    }
+
 }
 
 const update = (req,res) => {
-    Moto.findByIdAndUpdate(req.params.id, req.body).exec()
-    res.json()
+    try {
+        Moto.findByIdAndUpdate(req.params.id, req.body).exec()
+        res.json()
+    } catch {
+        res.status(400).json(err)
+    }
+
 }
 
 const destroy = (req,res) => {
-    Moto.findByIdAndDelete(req.params.id).exec()
-    res.json()
+    try {
+        Moto.findByIdAndDelete(req.params.id).exec()
+        res.json()
+    } catch {
+        res.status(400).json(err)
+    }
+
 }
 
 module.exports = {

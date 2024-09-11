@@ -1,28 +1,53 @@
 const Aeroporto = require("../models/aeroporto_model.js")
 
 const store = (req,res) => {
-    Aeroporto.create(req.body)
-    res.json()
+    try {
+        Aeroporto.create(req.body)
+        res.json()
+    } catch {
+        res.status(400).json(err)
+    }
+
 }
 
 const index = (req,res) => {
-    const content = Aeroporto.find().exec()
-    res.json(content)
+    try {
+        const content = Aeroporto.find().exec()
+        res.json(content)
+    } catch {
+        res.status(400).json(err)
+    }
+
 }
 
 const show = (req,res) => {
-    const content = Aeroporto.findById(req.params.id).exec()
-    res.json(content)
+    try {
+        const content = Aeroporto.findById(req.params.id).exec()
+        res.json(content)
+    } catch {
+        res.status(400).json(err)
+    }
+
 }
 
 const update = (req,res) => {
-    Aeroporto.findByIdAndUpdate(req.params.id, req.body).exec()
-    res.json()
+    try {
+        Aeroporto.findByIdAndUpdate(req.params.id, req.body).exec()
+        res.json()
+    } catch {
+        res.status(400).json(err)
+    }
+
 }
 
 const destroy = (req,res) => {
-    Aeroporto.findByIdAndDelete(req.params.id).exec()
-    res.json()
+    try {
+        Aeroporto.findByIdAndDelete(req.params.id).exec()
+        res.json()
+    } catch {
+        res.status(400).json(err)
+    }
+
 }
 
 module.exports = {
